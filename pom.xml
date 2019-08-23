@@ -78,7 +78,10 @@
 				<phase>test</phase>
 				<goals>
 					<goal>report</goal>
-				</goals>	
+				</goals>
+				<configuration>
+				    <outputDirectory>Reports/BuildsCodeCoverage</outputDirectory>
+				</configuration>	
 			</execution>
 		</executions>
 	</plugin>  
