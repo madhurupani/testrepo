@@ -3,6 +3,8 @@
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <checkstyle.home.dir>C:/Jenkins/Utilities/JenkinsPlugin/findbugs/checkstyle-5.6-all</checkstyle.home.dir>
+    <!--<maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>-->
  </properties>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.javatpoint</groupId>
@@ -62,29 +64,6 @@
           <webXml>WebContent\WEB-INF\web.xml</webXml>
         </configuration>
       </plugin>
-	<plugin>
-		<groupId>org.jacoco</groupId>
-		<artifactId>jacoco-maven-plugin</artifactId>
-		<version>0.8.2</version>
-		<executions>
-			<execution>
-				<goals>
-					<goal>prepare-agent</goal>
-				</goals>
-			</execution>
-			<!-- attached to Maven test phase -->
-			<execution>
-				<id>report</id>
-				<phase>test</phase>
-				<goals>
-					<goal>report</goal>
-				</goals>
-				<configuration>
-				    <outputDirectory>Reports/BuildsCodeCoverage</outputDirectory>
-				</configuration>	
-			</execution>
-		</executions>
-	</plugin>  
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
@@ -168,7 +147,7 @@
           </dependency>
         </dependencies>
       </plugin>
-      <plugin>
+      <!--<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>2.6</version>
@@ -177,11 +156,10 @@
             <consoleOutput>false</consoleOutput>
             <failsOnError>false</failsOnError>
             <includeTestSourceDirectory>false</includeTestSourceDirectory>
-                        <!--<cacheFile>Reports/BuildsStaticCodeAnalysisReport</cacheFile>-->
                         <outputDirectory>Reports/BuildsStaticCodeAnalysisReport</outputDirectory>
                         <outputFile>Reports/BuildsStaticCodeAnalysisReport/checkstyle_report.xml</outputFile>
         </configuration>
-      </plugin>
+      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
@@ -201,14 +179,37 @@
           </includes>
         </configuration>
       </plugin>
-            <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>2.19.1</version>
-    <configuration>
-        <testFailureIgnore>true</testFailureIgnore>
-    </configuration>
-</plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+        <configuration>
+                <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
+      </plugin>
+        <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.2</version>
+                <executions>
+                        <execution>
+                                <goals>
+                                        <goal>prepare-agent</goal>
+                                </goals>
+                        </execution>
+                        <!-- attached to Maven test phase -->
+                        <execution>
+                                <id>report</id>
+                                <phase>test</phase>
+                                <goals>
+                                        <goal>report</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>Reports/BuildsCodeCoverage</outputDirectory>
+                                </configuration>
+                        </execution>
+                </executions>
+        </plugin>
     </plugins>
   </build>
 </project>
